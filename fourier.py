@@ -8,12 +8,12 @@ def complex_quad(func: callable, a: float, b: float):
     return complex(real_integrate[0], imag_integrate[0]), (real_integrate[1], imag_integrate[1])
 
 
-def get_fourier_series(func_points: list, series_depth: int) -> list:
+def get_fourier_series(sample_points: list, series_depth: int) -> list:
     c_n = []
-    step_size = 1 / len(func_points)
+    step_size = 1 / len(sample_points)
     for n in range(-series_depth, series_depth + 1, 1):
         ray_sum = 0
-        for step, ele in enumerate(func_points):
+        for step, ele in enumerate(sample_points):
             ray_sum += ele * scipy.exp(-n * 2 * scipy.pi * 1j * step * step_size) * step_size
         c_n.append(ray_sum)
         print("c_" + str(n) + " calculation complete.")
@@ -50,20 +50,3 @@ def draw_fourier_series(c_n: list, resolution: int, period_count: int = 1):
         rslt.append(fourier_sum)
         print("draw step " + str(s) + " complete.")
     return rslt
-
-
-if __name__ == "__main__":
-    import plotting
-    c1_n = get_fourier_series_square(20)
-    r1 = draw_fourier_series(c1_n, 10000)
-    print("r1 done")
-    plotting.plot_complex(r1)
-
-    c2_n = get_fourier_series(r1, 20)
-    print("c_n calculation done.")
-    r2 = draw_fourier_series(c2_n, 10000, 2)
-    print("rslt drawing completed.")
-    plotting.plot_complex(r2)
-    plotting.plt.figure()
-    plotting.plt.plot(r2)
-
