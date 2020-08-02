@@ -42,7 +42,7 @@ def get_fourier_series_square(series_depth: int) -> list:
 
 def draw_fourier_series(c_n: list, resolution: int, period_count: int = 1):
     rslt = []
-    for s in range(resolution * period_count):
+    for s in range(resolution * period_count + 1):
         t = s / resolution
         fourier_sum = complex(0, 0)
         for i, n in enumerate(range(0 - int(len(c_n) / 2), len(c_n) - int(len(c_n) / 2))):

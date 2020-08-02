@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-import mpl_toolkits.mplot3d.axes3d
 
 
 def plot(numbers, xlim=(0, 0), ylim=(0, 0)) -> None:
